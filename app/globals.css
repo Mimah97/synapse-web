@@ -369,7 +369,7 @@ body {
   }
 }
 
-/* Print receipt view (issue #102) */
+/* Print receipt view (issue #102, #446) */
 .tx-receipt-root {
   display: none;
 }
@@ -378,6 +378,25 @@ body {
   /* Hide all normal app chrome; show only the receipt layout. */
   body > *:not(.tx-receipt-root) {
     display: none !important;
+  }
+
+  /* Shell chrome (header, tab bar, main, footer) and overlays never print. */
+  .shell-header,
+  .shell-nav,
+  .shell-main,
+  .toast-container,
+  .tx-detail-modal,
+  [role="dialog"],
+  [aria-modal="true"],
+  .no-print {
+    display: none !important;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
   }
 
   .tx-receipt-root {
@@ -474,5 +493,12 @@ body {
 
   @page {
     margin: 10mm;
+  }
+
+  /* Keep the receipt on a single page. */
+  .tx-receipt-root,
+  .tx-receipt-root * {
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 }

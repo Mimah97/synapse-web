@@ -61,6 +61,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       {children}
       {/* Toast container */}
       <div
+        className="toast-container"
         aria-live="assertive"
         style={{
           position: "fixed",
